@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-end">
+  <a class="btn btn-success" routerLink="add">Add new</a>
+</div>
+
+<table class="table">
+  <thead class="">
+    <tr>
+      <th>Name</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.name }}</td>
+      <td>{{ task.priority }}</td>
+      <td>{{ statusEnumToString(task.status) }}</td>
+      <td>
+        <button class="btn btn-info edit-btn" [routerLink]="'edit/' + task.id">
+          Edit
+        </button>
+        <button
+          *ngIf="task.status == statuses.Completed"
+          class="btn btn-danger"
+          (click)="onDelete(task)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

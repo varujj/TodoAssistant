@@ -1,0 +1,42 @@
+<form *ngIf="taskDto" [formGroup]="form">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      name="name"
+      formControlName="name"
+      placeholder="John"
+      [(ngModel)]="taskDto.name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="priority">Priority</label>
+    <input
+      type="number"
+      class="form-control"
+      id="priority"
+      name="priority"
+      formControlName="priority"
+      placeholder="1"
+      [(ngModel)]="taskDto.priority"
+    />
+  </div>
+  <div class="form-group">
+    <label for="status">Status</label>
+    <select
+      class="form-control"
+      id="status"
+      name="status"
+      formControlName="status"
+      [(ngModel)]="taskDto.status"
+    >
+      <option *ngFor="let status of statuses" [value]="status">
+        {{ statusEnumToString(status) }}
+      </option>
+    </select>
+  </div>
+
+  <button class="btn btn-success btn-save" (click)="save()">Save</button>
+</form>
